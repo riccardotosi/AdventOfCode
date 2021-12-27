@@ -40,20 +40,6 @@ def getHydrothermalVentsWithDiag(dict_data, line):
         dict_data[(x,y)] += 1
     return dict_data
 
-def process_vent_2(dict_data_pt2, line):
-    pos1,pos2 = line.split('->')
-    x1,y1 = (int(pos) for pos in pos1.split(','))
-    x2,y2 = (int(pos) for pos in pos2.split(','))
-    dif_y = 1 if y2 > y1 else -1 if y1 > y2 else 0
-    dif_x = 1 if x2 > x1 else -1 if x1 > x2 else 0
-    pos_x,pos_y = x1,y1
-    while not (pos_x == x2 and pos_y == y2):
-        dict_data_pt2[(pos_x,pos_y)] += 1
-        pos_x += dif_x
-        pos_y += dif_y
-    dict_data_pt2[(pos_x,pos_y)] += 1
-    return dict_data_pt2
-
 data = open('input.dat', 'r').read().splitlines()
 dict_data_pt1 = defaultdict(lambda: 0) # function returning the default value for the dictionary defined
 
